@@ -35,8 +35,8 @@ public:
         Insert_Fixe_Up(newNode);
     }
 
-    void printInOrder(){
-        printInOrder(root);
+    string printInOrder() {
+        return printInOrder(root);
     }
 
     bool search(T value){
@@ -189,12 +189,14 @@ private:
         }
     }
 
-    void printInOrder(Node<T>* node){
+    string printInOrder(Node<T>* node){
+        string result = "";
         if(node != nullptr){
-            printInOrder(node->left);
-            cout<<node->data<<"("<<node->color<<")"<<" ";
-            printInOrder(node->right);
+            result += printInOrder(node->left);
+            result += to_string(node->data) + "(" + node->color + ")" + " ";
+            result += printInOrder(node->right);
         }
+        return result;
     }
 
 
