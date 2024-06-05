@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementación del Código</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>Red-Black Trees</h1>
+            <nav>
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="implementation.html" class="nav-link">Implementación</a>
+                <a href="members.html" class="nav-link">Integrantes</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="card fade-in">
+            <h2>Implementación del Código</h2>
+            <pre>
+<code>
+// Ejemplo básico de implementación de un árbol Red-Black en Python
+
+class Node:
+    def __init__(self, data, color='red'):
+        self.data = data
+        self.color = color
+        self.left = None
+        self.right = None
+        self.parent = None
+
+class RedBlackTree:
+    def __init__(self):
+        self.NIL = Node(None, color='black')
+        self.root = self.NIL
+
+    # Métodos para insertar, borrar, rotar y balancear el árbol
+    # ...
+            </code>
+            </pre>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            &copy; 2024 Red-Black Trees. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
