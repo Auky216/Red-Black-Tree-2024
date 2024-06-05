@@ -5,7 +5,10 @@ int main(){
 
     tree.insert(10);
     tree.insert(5);
-    tree.insert(20);
-
+    
     tree.printInOrder();
+
+    cout<<tree.search(20);
+
+    return 0;
 }
