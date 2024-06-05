@@ -30,7 +30,9 @@ public:
     }
 
     void insert(T value){
-        insert(root,value);
+        Node<T>* newNode = new Node<T>(value);
+        insert(root, newNode);
+        Insert_Fixe_Up(newNode);
     }
 
     void printInOrder(){
@@ -65,20 +67,18 @@ private:
     }
 
     Node<T>* getUncle(Node<T>* node){
-        auto grandparent = getGrandparent(node);
-
-        if(grandparent == nullptr){
-            return nullptr;
-        }
-        else if(node->parent == grandparent->left){
-            return grandparent->right;
-        }
-        else{
-            return grandparent->left;
-        }
+    Node<T>* grandparent = getGrandparent(node);
+    if (grandparent == nullptr) {
+        return nullptr; 
     }
+    if (node->parent == grandparent->left) {
+        return grandparent->right; 
+    } else {
+        return grandparent->left; 
+    }
+}
 
-    void rotateLeft(Node<T>* &node) {
+    void rotateLeft(Node<T>* node) {
         Node<T> *rightChild = node->right;
         node->right = rightChild->left;
 
@@ -99,7 +99,7 @@ private:
         node->parent = rightChild;
     }
 
-    void rotateRight(Node<T>* &node) {
+    void rotateRight(Node<T>* node) {
         Node<T> *leftChild = node->left;
         node->left = leftChild->right;
 
@@ -110,17 +110,54 @@ private:
         leftChild->parent = getParent(node);
         if (getParent(node) == nullptr) {
             root = leftChild;
-        } else if (node == getParent(node)->left) {
-            getParent(node)->left = leftChild;
-        } else {
+        } else if (node == getParent(node)->right) {
             getParent(node)->right = leftChild;
+        } else {
+            getParent(node)->left = leftChild;
         }
 
         leftChild->right = node;
         node->parent = leftChild;
     }
 
-    void Recolor(Node<T>* node){
+    void Insert_Fixe_Up(Node<T>* node){
+        while(getParent(node) != nullptr && getParent(node)->color == 'R'){
+            if(getParent(node) == getGrandparent(node)->left){
+                Node<T>* uncle = getUncle(node);
+                if(uncle != nullptr && uncle->color == 'R'){
+                    getParent(node)->color = 'B';
+                    uncle->color = 'B';
+                    getGrandparent(node)->color = 'R';
+                    node = getGrandparent(node);
+                }else{
+                    if(node == getParent(node)->right){
+                        node = getParent(node);
+                        rotateLeft(node);
+                    }
+                    getParent(node)->color = 'B';
+                    getGrandparent(node)->color = 'R';
+                    rotateRight(getGrandparent(node));
+                }
+            }else{
+                Node<T>* uncle = getUncle(node);
+                if(uncle != nullptr && uncle->color == 'R'){
+                    getParent(node)->color = 'B';
+                    uncle->color = 'B';
+                    getGrandparent(node)->color = 'R';
+                    node = getGrandparent(node);
+                }else{
+                    if(node == getParent(node)->left){
+                        node = getParent(node);
+                        rotateRight(node);
+                    }
+                    getParent(node)->color = 'B';
+                    getGrandparent(node)->color = 'R';
+                    rotateLeft(getGrandparent(node));
+                }
+            }
+        }
+
+        root->color = 'B';
 
     }
 
@@ -139,15 +176,16 @@ private:
         return nullptr;
     }
 
-    void insert(Node<T>* &node, T value){
+    void insert(Node<T>* &node, Node<T>* newNode){
         if(node == nullptr){
-            node = new Node<T>(value);
-        }
-        else if(value < node->data){
-            insert(node->left,value);
-        }
-        else if(value > node->data){
-            insert(node->right,value);
+            node = newNode;
+            newNode->parent = nullptr; 
+        } else if(newNode->data < node->data){
+            insert(node->left, newNode);
+            node->left->parent = node;
+        } else if(newNode->data > node->data){
+            insert(node->right, newNode);
+            node->right->parent = node;
         }
     }
 
