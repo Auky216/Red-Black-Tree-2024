@@ -1,17 +1,25 @@
 #include "RBT.h"
+#include <pistache/endpoint.h>
 
-int main(){
-    RBT<int> tree;
-
-    tree.insert(10);
-    tree.insert(5);
-    tree.insert(15);
-    tree.insert(5);
-    tree.insert(20);
-    tree.insert(30);
-    tree.insert(35);
-    tree.printInOrder();
+using namespace Pistache;
 
 
-    return 0;
+class HelloHandler : public Http::Handler {
+public:
+
+    HTTP_PROTOTYPE(HelloHandler)
+
+    void onRequest(const Http::Request& request, Http::ResponseWriter response) {
+        response.send(Http::Code::Ok, "Hello, World\n");
+    }
+};
+
+int main() {
+    Address addr(Ipv4::any(), Port(9080));
+
+    auto opts = Http::Endpoint::options().threads(1);
+    Http::Endpoint server(addr);
+    server.init(opts);
+    server.setHandler(Http::make_handler<HelloHandler>());
+    server.serve();
 }

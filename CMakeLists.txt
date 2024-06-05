@@ -1,10 +1,13 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.17)
 project(Red_Black_Tree_2024)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
-include_directories(.)
+find_package(PkgConfig REQUIRED)
+pkg_search_module(PISTACHE REQUIRED libpistache)
 
-add_executable(Red_Black_Tree_2024
-        main.cpp
-        RBT.h)
+include_directories(${PISTACHE_INCLUDE_DIRS})
+
+add_executable(Red_Black_Tree_2024 main.cpp RBT.h)
+
+target_link_libraries(Red_Black_Tree_2024 ${PISTACHE_LIBRARIES})

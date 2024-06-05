@@ -1,0 +1,13 @@
+# Target labels
+ crow
+# Source files and their labels
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/crow
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/crow.rule
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/crow-complete.rule
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-build.rule
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-configure.rule
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-download.rule
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-install.rule
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-mkdir.rule
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-patch.rule
+/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-update.rule

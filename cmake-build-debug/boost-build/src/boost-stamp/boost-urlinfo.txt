@@ -1,0 +1,12 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The download step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+method=url
+command=/usr/local/clion-2024.1.1/bin/cmake/linux/x64/bin/cmake;-P;/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/boost-build/src/boost-stamp/download-boost.cmake;COMMAND;/usr/local/clion-2024.1.1/bin/cmake/linux/x64/bin/cmake;-P;/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/boost-build/src/boost-stamp/verify-boost.cmake;COMMAND;/usr/local/clion-2024.1.1/bin/cmake/linux/x64/bin/cmake;-P;/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/boost-build/src/boost-stamp/extract-boost.cmake
+source_dir=/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/boost-build/src/boost
+work_dir=/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/boost-build/src
+url(s)=https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz
+hash=
+no_extract=
+

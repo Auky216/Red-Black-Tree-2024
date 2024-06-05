@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/crow"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/crow.rule"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/crow-complete.rule"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-build.rule"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-configure.rule"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-download.rule"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-install.rule"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-mkdir.rule"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-patch.rule"
+		},
+		{
+			"file" : "/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow-stamp/crow-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"crow"
+		],
+		"name" : "crow"
+	}
+}

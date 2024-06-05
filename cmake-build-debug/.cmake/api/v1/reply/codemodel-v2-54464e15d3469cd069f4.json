@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.28"
+						"string" : "3.17"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Red_Black_Tree_2024::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Red_Black_Tree_2024-Debug-00a7a6f37e3e395a2b80.json",
+					"jsonFile" : "target-Red_Black_Tree_2024-Debug-7c82069a59017372f28d.json",
 					"name" : "Red_Black_Tree_2024",
 					"projectIndex" : 0
 				}

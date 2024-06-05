@@ -1,0 +1,15 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The download step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+method=git
+command=/usr/local/clion-2024.1.1/bin/cmake/linux/x64/bin/cmake;-P;/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/tmp/crow-gitclone.cmake
+source_dir=/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow
+work_dir=/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src
+repository=https://github.com/ipkn/crow.git
+remote=origin
+init_submodules=TRUE
+recurse_submodules=--recursive
+submodules=
+CMP0097=NEW
+

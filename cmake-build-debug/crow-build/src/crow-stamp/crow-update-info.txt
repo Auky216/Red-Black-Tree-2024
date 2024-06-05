@@ -1,0 +1,7 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The patch step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+command (connected)=/usr/local/clion-2024.1.1/bin/cmake/linux/x64/bin/cmake;-Dcan_fetch=YES;-P;/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/tmp/crow-gitupdate.cmake
+command (disconnected)=/usr/local/clion-2024.1.1/bin/cmake/linux/x64/bin/cmake;-Dcan_fetch=NO;-P;/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/tmp/crow-gitupdate.cmake
+work_dir=/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/crow-build/src/crow
