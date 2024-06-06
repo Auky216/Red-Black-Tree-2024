@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Implementación del Código</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para hacer que el iframe ocupe toda la página */
+        .full-width-iframe {
+            width: 100%;
+            height: 100vh; /* 100% del viewport height */
+            border: none; /* Elimina el borde del iframe si lo hubiera */
+            margin: 0; /* Elimina el margen del iframe */
+            padding: 0; /* Elimina el padding del iframe */
+        }
+        /* Estilos para centrar el contenido */
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,38 +39,12 @@
 
     <!-- Main Content -->
     <main class="main">
-        <section class="card fade-in">
-            <h2>Implementación del Código</h2>
-            <pre>
-<code>
-// Ejemplo básico de implementación de un árbol Red-Black en Python
-
-class Node:
-    def __init__(self, data, color='red'):
-        self.data = data
-        self.color = color
-        self.left = None
-        self.right = None
-        self.parent = None
-
-class RedBlackTree:
-    def __init__(self):
-        self.NIL = Node(None, color='black')
-        self.root = self.NIL
-
-    # Métodos para insertar, borrar, rotar y balancear el árbol
-    # ...
-            </code>
-            </pre>
-        </section>
+        <!-- Eliminado el card -->
+        <iframe src="rbt.html" class="full-width-iframe"></iframe>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            &copy; 2024 Red-Black Trees. Todos los derechos reservados.
-        </div>
-    </footer>
+    
 
     <script src="script.js"></script>
 </body>
