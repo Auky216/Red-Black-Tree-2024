@@ -1,0 +1,15 @@
+// Red-Black Tree
+digraph {
+	rankdir=TB
+	20 [label=20 fillcolor=black style=filled]
+	20 -> 10
+	20 -> 30
+	10 [label=10 fillcolor=black style=filled]
+	10 -> 5
+	10 -> 15
+	5 [label=5 fillcolor=red style=filled]
+	15 [label=15 fillcolor=red style=filled]
+	30 [label=30 fillcolor=black style=filled]
+	30 -> 25
+	25 [label=25 fillcolor=red style=filled]
+}

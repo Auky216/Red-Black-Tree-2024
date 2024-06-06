@@ -1,0 +1,13 @@
+# ninja log v5
+45	6714	1717637016528653581	CMakeFiles/Red_Black_Tree_2024.dir/main_copy.cpp.o	d21cd6d92bb4b59e
+964	975	1717558024541576101	crow-build/src/crow-stamp/crow-build	fa6473cb00543af5
+14	1703	1717557771739580508	crow-build/src/crow-stamp/crow-download	6b40fc024afab1f7
+941	951	1717558024518576101	crow-build/src/crow-stamp/crow-patch	11f51062794abfb
+7	14	1717557770050580543	crow-build/src/crow-stamp/crow-mkdir	5588fb8f673a0b1d
+2	68	1717638690554188080	build.ninja	42524dd3ff53e1dd
+6716	6957	1717637016775653577	Red_Black_Tree_2024	f0e892b1851c806f
+975	984	1717558024551576101	crow-build/src/crow-stamp/crow-install	6c9f624efc67a3df
+951	964	1717558024531576101	crow-build/src/crow-stamp/crow-configure	133e776e3a465da0
+984	996	1717558024563576100	crow-build/src/crow-stamp/crow-done	49bee1d4b22040c0
+17	13695	1717638712047187593	CMakeFiles/Red_Black_Tree_2024.dir/main_copy.cpp.o	125d1ed6a98a8f1d
+13696	14457	1717638712810187577	Red_Black_Tree_2024	f0e892b1851c806f

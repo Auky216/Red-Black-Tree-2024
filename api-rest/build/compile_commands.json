@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/adrian/proyects/Red-Black-Tree-2024/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/Red_Black_Tree_2024.dir/main.cpp.o -c /home/adrian/proyects/Red-Black-Tree-2024/main.cpp",
+  "file": "/home/adrian/proyects/Red-Black-Tree-2024/main.cpp"
+}
+]

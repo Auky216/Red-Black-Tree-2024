@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red-Black Tree Visualization</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .node circle {
+            fill: #000;
+            stroke: #000;
+            stroke-width: 2px;
+        }
+
+        .node text {
+            font: 12px sans-serif;
+            fill: #000; /* Color del texto dentro del nodo */
+        }
+
+        .node.red circle {
+            fill: #f00;
+            stroke: #f00;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+            stroke-width: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="tree-container"></div>
+    <form id="insert-form">
+        <label for="node-value">Valor del nodo:</label>
+        <input type="number" id="node-value" name="value" required>
+        <button type="submit">Añadir Nodo</button>
+    </form>
+
+    <script>
+        // Configuración del layout del árbol
+        var margin = { top: 20, right: 90, bottom: 30, left: 90 },
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        var svg = d3.select("#tree-container").append("svg")
+            .attr("width", width + margin.right + margin.left)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var tree = d3.tree().size([height, width]);
+
+        var root;
+
+        // Función para cargar los datos del árbol
+        function loadTreeData() {
+            d3.json("http://localhost:9080/treeData")
+                .then(function(data) {
+                    // Limpiar el SVG antes de redibujar
+                    svg.selectAll("*").remove();
+
+                    root = d3.hierarchy(data, function(d) { return d.children && d.children[0] !== null ? d.children : null; });
+                    tree(root);
+
+                    var nodes = root.descendants();
+                    var links = root.links();
+
+                    // Dibuja los enlaces
+                    svg.selectAll(".link")
+                        .data(links)
+                        .enter().append("path")
+                        .attr("class", "link")
+                        .attr("d", d3.linkHorizontal()
+                            .x(function(d) { return d.y; })
+                            .y(function(d) { return d.x; }));
+
+                    // Dibuja los nodos
+                    var node = svg.selectAll(".node")
+                        .data(nodes)
+                        .enter().append("g")
+                        .attr("class", function(d) { return "node " + (d.data.color === "red" ? "red" : "black"); })
+                        .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+                    node.append("circle")
+                        .attr("r", 10);
+
+                    node.append("text")
+                        .attr("dy", ".35em")
+                        .attr("x", function(d) { return d.children ? -13 : 13; })
+                        .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+                        .text(function(d) { return d.data.name; });
+                })
+                .catch(function(error) {
+                    console.error("Error al cargar los datos del árbol:", error);
+                });
+        }
+
+        // Cargar los datos del árbol al cargar la página
+        loadTreeData();
+
+        // Manejar el envío del formulario para agregar un nodo
+        document.getElementById("insert-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var value = document.getElementById("node-value").value;
+
+            // Realizar una solicitud GET al servidor API para insertar el nodo
+            fetch("http://localhost:9080/insert?value=" + value, {
+                method: "GET"
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    console.log("Nodo insertado exitosamente.");
+                    // Volver a cargar los datos del árbol después de agregar el nodo
+                    loadTreeData();
+                } else {
+                    console.error("Error al insertar el nodo:", response.statusText);
+                }
+            })
+            .catch(function(error) {
+                console.error("Error de red al insertar el nodo:", error);
+            });
+        });
+    </script>
+</body>
+</html>

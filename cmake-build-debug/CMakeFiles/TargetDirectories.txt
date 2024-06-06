@@ -1,5 +1,0 @@
-/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/Red_Black_Tree_2024.dir
-/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/package.dir
-/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/package_source.dir
-/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/adrian/proyects/Red-Black-Tree-2024/cmake-build-debug/CMakeFiles/rebuild_cache.dir
