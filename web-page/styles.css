@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+/* Estilos generales */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f5f5f5;
@@ -28,50 +29,120 @@ body {
 
 .main {
     display: flex;
-    justify-content: center;
     padding: 50px 0;
+    justify-content: center;
 }
 
 .card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 20px;
+    background-color: #f0f0f0;
     padding: 20px;
-    max-width: 800px;
-    width: 100%;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: calc(20% - 30px); /* Calcula el ancho para mostrar en fila horizontal */
+    display: inline-block;
     text-align: center;
 }
 
-h1 {
-    font-size: 3em;
-    color: #ffffff;
-}
-
-h2 {
-    font-size: 2em;
-    color: #000;
-    margin-bottom: 20px;
-}
-
-p, ul {
-    color: #333;
-    font-size: 1.2em;
-    line-height: 1.6;
-}
-
-ul {
-    list-style-type: disc;
-    padding-left: 40px;
-}
-
 .card:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
+    transform: translateY(-5px);
 }
 
-.footer {
-    position: absolute;
-    bottom: 0;
+.card-container {
+    display: flex;
+    justify-content: space-around; /* Distribuye las tarjetas horizontalmente con espacio alrededor */
+    flex-wrap: wrap; /* Permite que las tarjetas se envuelvan en múltiples líneas */
+}
+
+.card-content {
+    height: 100%; /* Asegura que la tarjeta ocupe toda la altura disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-img {
     width: 100%;
+    height: auto;
+    border-radius: 8px; /* Añade bordes redondeados a las imágenes */
+    border: 4px solid #fff; /* Borde blanco alrededor de la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-img:hover {
+    transform: scale(1.1); /* Escala la imagen al hacer hover */
+}
+
+.card-text {
+    flex-grow: 1; /* Permite que el contenido de texto crezca según el contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 0; /* Ajusta el espacio interno del texto */
+}
+
+/* Estilos adicionales para hacerlo responsive */
+@media (max-width: 768px) {
+    .card {
+        width: 100%; /* Cambia el ancho a 100% en pantallas más pequeñas */
+        max-width: none; /* Elimina el ancho máximo en pantallas más pequeñas */
+        margin: 10px 0; /* Ajusta el margen para una mejor alineación */
+    }
+}
+
+/* Estilos para el contenedor del árbol Red-Black Tree */
+#tree-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura del contenedor para que ocupe toda la altura visible */
+}
+
+svg {
+    max-width: 100%; /* Asegura que el SVG no supere el tamaño del contenedor */
+    height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+}
+
+/* Estilos para el formulario de inserción */
+#insert-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#insert-form label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#node-value {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 100px; /* Ancho inicial del campo de entrada */
+}
+
+#node-value:focus {
+    outline: none;
+    border-color: #ff4655; /* Cambia el color del borde al enfocar */
+}
+
+#insert-btn {
+    padding: 8px 20px;
+    font-size: 14px;
+    background-color: #ff4655;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#insert-btn:hover {
+    background-color: #e53935; /* Cambia el color de fondo al pasar el cursor */
 }

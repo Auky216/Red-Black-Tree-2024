@@ -9,6 +9,16 @@ int main(){
     tree.insert(30);
     tree.insert(15);
     tree.insert(25);
+    tree.insert(24);
+    tree.insert(24);
     
     cout<< tree.printInOrder();
+
+    cout<<endl;
+
+
+    tree.Delete(25  );
+
+    cout<< tree.printInOrder();
+
 }

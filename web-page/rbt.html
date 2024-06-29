@@ -27,18 +27,91 @@
             stroke: #ccc;
             stroke-width: 2px;
         }
+
+        /* Estilos para los formularios */
+        #form-container {
+            display: flex;
+            flex-direction: column; /* Cambio a dirección de columna para separar verticalmente los formularios */
+            align-items: center; /* Centra los formularios horizontalmente */
+            gap: 20px; /* Espacio entre los formularios */
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centra los elementos del formulario horizontalmente */
+            gap: 10px; /* Espacio entre elementos del formulario */
+        }
+
+        form > * {
+            margin-right: 10px; /* Espacio entre los elementos del formulario */
+        }
+
+        form input[type="number"],
+        form button[type="submit"] {
+            padding: 10px;
+            font-size: 14px;
+            width: 150px; /* Ancho fijo para los campos de entrada y botones */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        form input[type="number"]:focus {
+            outline: none;
+            border-color: #ff4655;
+        }
+
+        form button[type="submit"] {
+            background-color: #ff4655;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #e53935;
+        }
+
+        /* Estilos para el mensaje de nodo encontrado */
+        #find-message {
+            margin-top: 10px; /* Espacio superior */
+            font-size: 14px;
+            color: green; /* Color del texto */
+        }
     </style>
 </head>
 <body>
-    <div id="tree-container"></div>
-    <form id="insert-form">
-        <label for="node-value">Valor del nodo:</label>
-        <input type="number" id="node-value" name="value" required>
-        <button type="submit">Añadir Nodo</button>
-    </form>
+    <div id="tree-container">
+        <svg id="tree-svg"></svg>
+    </div>
+
+    <div id="form-container">
+        <form id="insert-form">
+            <input type="number" id="insert-value" name="value" required>
+            <button type="submit">Añadir Nodo</button>
+        </form>
+
+        <form id="find-form">
+            <input type="number" id="find-value" name="value" required>
+            <button type="submit">Encontrar Nodo</button>
+        </form>
+
+        <form id="delete-form">
+            <input type="number" id="delete-value" name="value" required>
+            <button type="submit">Eliminar Nodo</button>
+        </form>
+
+        <form id="clear-form">
+            <button type="submit">Limpiar Arbol</button>
+        </form>
+
+        <!-- Mensaje de nodo encontrado -->
+        <div id="find-message"></div>
+    </div>
 
     <script>
-        // Configuración del layout del árbol
+        // Configuración del layout del árbol y funciones para interactuar con él
         var margin = { top: 20, right: 90, bottom: 30, left: 90 },
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
@@ -50,7 +123,6 @@
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         var tree = d3.tree().size([height, width]);
-
         var root;
 
         // Función para cargar los datos del árbol
@@ -99,10 +171,16 @@
         // Cargar los datos del árbol al cargar la página
         loadTreeData();
 
+        // Función para mostrar el mensaje de nodo encontrado
+        function showFindMessage(message) {
+            var findMessage = document.getElementById("find-message");
+            findMessage.textContent = message;
+        }
+
         // Manejar el envío del formulario para agregar un nodo
         document.getElementById("insert-form").addEventListener("submit", function(event) {
             event.preventDefault();
-            var value = document.getElementById("node-value").value;
+            var value = document.getElementById("insert-value").value;
 
             // Realizar una solicitud GET al servidor API para insertar el nodo
             fetch("http://localhost:9080/insert?value=" + value, {
@@ -113,12 +191,90 @@
                     console.log("Nodo insertado exitosamente.");
                     // Volver a cargar los datos del árbol después de agregar el nodo
                     loadTreeData();
+                    // Limpiar el mensaje de nodo encontrado
+                    showFindMessage("");
                 } else {
                     console.error("Error al insertar el nodo:", response.statusText);
                 }
             })
             .catch(function(error) {
                 console.error("Error de red al insertar el nodo:", error);
+            });
+        });
+
+        // Manejar el envío del formulario para encontrar un nodo
+        document.getElementById("find-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var value = document.getElementById("find-value").value;
+
+            // Realizar una solicitud GET al servidor API para encontrar el nodo
+            fetch("http://localhost:9080/find?value=" + value, {
+                method: "GET"
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("No se encontró el nodo.");
+                }
+            })
+            .then(function(data) {
+                console.log("Nodo encontrado:", data);
+                showFindMessage("Nodo encontrado: ");
+                loadTreeData(); // Actualizar el árbol después de la búsqueda
+            })
+            .catch(function(error) {
+                console.error("Error al encontrar el nodo:", error);
+                showFindMessage("No se encontró el nodo.");
+            });
+        });
+
+        // Manejar el envío del formulario para eliminar un nodo
+        document.getElementById("delete-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var value = document.getElementById("delete-value").value;
+
+            // Realizar una solicitud GET al servidor API para eliminar el nodo
+            fetch("http://localhost:9080/delete?value=" + value, {
+                method: "GET"
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    console.log("Nodo eliminado exitosamente.");
+                    // Volver a cargar los datos del árbol después de eliminar el nodo
+                    loadTreeData();
+                    // Limpiar el mensaje de nodo encontrado
+                    showFindMessage("");
+                } else {
+                    console.error("Error al eliminar el nodo:", response.statusText);
+                }
+            })
+            .catch(function(error) {
+                console.error("Error de red al eliminar el nodo:", error);
+            });
+        });
+
+        // Manejar el envío del formulario para limpiar el árbol
+        document.getElementById("clear-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Realizar una solicitud GET al servidor API para limpiar el árbol
+            fetch("http://localhost:9080/clear", {
+                method: "GET"
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    console.log("Árbol limpiado exitosamente.");
+                    // Volver a cargar los datos del árbol después de limpiarlo
+                    loadTreeData();
+                    // Limpiar el mensaje de nodo encontrado
+                    showFindMessage("");
+                } else {
+                    console.error("Error al limpiar el árbol:", response.statusText);
+                }
+            })
+            .catch(function(error) {
+                console.error("Error de red al limpiar el árbol:", error);
             });
         });
     </script>

@@ -1,6 +1,4 @@
 #include <iostream>
-#include <chrono>
-#include <random>
 #include <pistache/endpoint.h>
 #include <nlohmann/json.hpp>
 #include "RBT.h"
@@ -14,19 +12,15 @@ public:
 
     void onRequest(const Http::Request& request, Http::ResponseWriter response) override {
         if (request.method() == Http::Method::Get && request.resource() == "/insert") {
-            if (!request.query().has("value")) {
-                response.send(Http::Code::Bad_Request, "Se requiere un valor para insertar en el árbol.");
-                return;
-            }
-
-            int value = std::stoi(request.query().get("value").value());
-
-            // Insertar el valor en el árbol
-            tree.insert(value);
-            response.send(Http::Code::Ok, "Nodo insertado exitosamente.");
+            handleInsert(request, response);
+        } else if (request.method() == Http::Method::Get && request.resource() == "/delete") {
+            handleDelete(request, response);
         } else if (request.method() == Http::Method::Get && request.resource() == "/treeData") {
-            json treeDataJson = generateTreeData();
-            response.send(Http::Code::Ok, treeDataJson.dump());
+            handleTreeData(request, response);
+        } else if (request.method() == Http::Method::Get && request.resource() == "/clear") {
+            handleClear(request, response);
+        } else if (request.method() == Http::Method::Get && request.resource() == "/find") {
+            handleFind(request, response);
         } else {
             response.send(Http::Code::Not_Found, "Ruta no encontrada.");
         }
@@ -34,6 +28,66 @@ public:
 
 private:
     static RBT<int> tree; // Árbol Red-Black estático
+
+    void handleInsert(const Http::Request& request, Http::ResponseWriter& response) {
+        if (!request.query().has("value")) {
+            response.send(Http::Code::Bad_Request, "Se requiere un valor para insertar en el árbol.");
+            return;
+        }
+
+        int value = std::stoi(request.query().get("value").value());
+
+        // Insertar el valor en el árbol
+        tree.insert(value);
+        response.send(Http::Code::Ok, "Nodo insertado exitosamente.");
+    }
+
+    void handleDelete(const Http::Request& request, Http::ResponseWriter& response) {
+        if (!request.query().has("value")) {
+            response.send(Http::Code::Bad_Request, "Se requiere un valor para eliminar del árbol.");
+            return;
+        }
+
+        int value = std::stoi(request.query().get("value").value());
+
+        // Eliminar el valor del árbol
+        bool result = tree.deleteNode(value);
+        if (result) {
+            response.send(Http::Code::Ok, "Nodo eliminado exitosamente.");
+        } else {
+            response.send(Http::Code::Not_Found, "Nodo no encontrado.");
+        }
+    }
+
+    void handleTreeData(const Http::Request& request, Http::ResponseWriter& response) {
+        json treeDataJson = generateTreeData();
+        response.send(Http::Code::Ok, treeDataJson.dump());
+    }
+
+    void handleClear(const Http::Request& request, Http::ResponseWriter& response) {
+        tree.clear();
+        response.send(Http::Code::Ok, "Árbol limpiado exitosamente.");
+    }
+
+    void handleFind(const Http::Request& request, Http::ResponseWriter& response) {
+        if (!request.query().has("value")) {
+            response.send(Http::Code::Bad_Request, "Se requiere un valor para buscar en el árbol.");
+            return;
+        }
+
+        int value = std::stoi(request.query().get("value").value());
+
+        // Buscar el valor en el árbol
+        bool found = tree.search(value);
+        json result;
+        result["found"] = found;
+
+        if (found) {
+            response.send(Http::Code::Ok, result.dump());
+        } else {
+            response.send(Http::Code::Not_Found, result.dump());
+        }
+    }
 
     json generateTreeData() {
         if (tree.getRoot() == nullptr) {
@@ -65,8 +119,6 @@ private:
 RBT<int> WebHandler::tree;
 
 int main() {
-    std::srand(std::time(nullptr));
-
     Port port(9080);
 
     Address addr(Ipv4::any(), port);

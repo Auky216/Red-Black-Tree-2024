@@ -48,7 +48,138 @@ public:
             return true;
         }
     }
+
+    void Delete(T value) {
+    Node<T>* nodeToDelete = Find(root, value); // Find the node with the given value
+    if (nodeToDelete != nullptr) {
+        Delete(root, nodeToDelete); // Call the Delete function you implemented earlier
+    }
+}
 private:
+
+void Transplant(Node<T>*& root, Node<T>* u, Node<T>* v) {
+    if (u->parent == nullptr) {
+        root = v;
+    } else if (u == u->parent->left) {
+        u->parent->left = v;
+    } else {
+        u->parent->right = v;
+    }
+    if (v != nullptr) {
+        v->parent = u->parent;
+    }
+}
+
+Node<T>* Minimum(Node<T>* node) {
+    while (node->left != nullptr) {
+        node = node->left;
+    }
+    return node;
+}
+
+Node<T>* Find(Node<T>* root, T value) {
+    if (root == nullptr || root->data == value) {
+        // Return the current node if it's either the node we're looking for, or we've reached a leaf node
+        return root;
+    }
+    if (root->data < value) {
+        // If the current node's data is less than the value we're looking for, search the right subtree
+        return Find(root->right, value);
+    } else {
+        // If the current node's data is greater than the value we're looking for, search the left subtree
+        return Find(root->left, value);
+    }
+}
+
+    void DeleteFixUp(Node<T>* root, Node<T>* x) {
+    while (x != root && x->color == 'B') {
+        if (x == x->parent->left) {
+            Node<T>* w = x->parent->right;
+            if (w->color == 'R') {
+                w->color = 'B';
+                x->parent->color = 'R';
+                rotateLeft(x->parent);
+                w = x->parent->right;
+            }
+            if (w->left->color == 'B' && w->right->color == 'B') {
+                w->color = 'R';
+                x = x->parent;
+            } else {
+                if (w->right->color == 'B') {
+                    w->left->color = 'B';
+                    w->color = 'R';
+                    rotateRight(w);
+                    w = x->parent->right;
+                }
+                w->color = x->parent->color;
+                x->parent->color = 'B';
+                w->right->color = 'B';
+                rotateLeft(x->parent);
+                x = root;
+            }
+        } else {
+            Node<T>* w = x->parent->left;
+            if (w->color == 'R') {
+                w->color = 'B';
+                x->parent->color = 'R';
+                rotateRight(x->parent);
+                w = x->parent->left;
+            }
+            if (w->right->color == 'B' && w->left->color == 'B') {
+                w->color = 'R';
+                x = x->parent;
+            } else {
+                if (w->left->color == 'B') {
+                    w->right->color = 'B';
+                    w->color = 'R';
+                    rotateLeft(w);
+                    w = x->parent->left;
+                }
+                w->color = x->parent->color;
+                x->parent->color = 'B';
+                w->left->color = 'B';
+                rotateRight(x->parent);
+                x = root;
+            }
+        }
+    }
+    x->color = 'B';
+}
+
+    void Delete(Node<T>* root, Node<T>* node) {
+        Node<T>* y = node;
+        Node<T>* x;
+        char yOriginalColor = y->color;
+
+        if (node->left == nullptr) {
+            x = node->right;
+            Transplant(root, node, node->right);
+        } else if (node->right == nullptr) {
+            x = node->left;
+            Transplant(root, node, node->left);
+        } else {
+            y = Minimum(node->right);
+            yOriginalColor = y->color;
+            x = y->right;
+
+            if (y->parent == node) {
+                x->parent = y;
+            } else {
+                Transplant(root, y, y->right);
+                y->right = node->right;
+                y->right->parent = y;
+            }
+
+            Transplant(root, node, y);
+            y->left = node->left;
+            y->left->parent = y;
+            y->color = node->color;
+        }
+
+        if (yOriginalColor == 'B') {
+            DeleteFixUp(root, x);
+        }
+    }
 
     Node<T>* getParent(Node<T>* node){
         if(node != nullptr){
@@ -198,6 +329,8 @@ private:
         }
         return result;
     }
+
+
 
 
 };
