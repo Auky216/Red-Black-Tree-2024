@@ -1,0 +1,65 @@
+[33mcommit 8d4afe220bdf7fda4ba2fe916af802eab15e8cc9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: adrianauquiperez <adrian.auqui@utec.edu.pe>
+Date:   Sat Jun 29 23:01:43 2024 -0500
+
+    final web version
+
+[33mcommit 6fcfb5a413f76bc8c1895c95fbff28c30d4bba8a[m
+Author: adrianauquiperez <adrian.auqui@utec.edu.pe>
+Date:   Sat Jun 29 02:41:12 2024 -0500
+
+    finally red black tree visualization
+
+[33mcommit 63ca52000500f54ade2ce0844c8500fccb29930a[m
+Author: adrianauquiperez <adrian.auqui@utec.edu.pe>
+Date:   Thu Jun 6 17:52:12 2024 -0500
+
+    web-page
+
+[33mcommit cead496d5a35ed6606026b4330bbbd5011256607[m
+Author: adrianauquiperez <adrian.auqui@utec.edu.pe>
+Date:   Thu Jun 6 16:47:15 2024 -0500
+
+    part1
+
+[33mcommit 3b09694ee50776191a34f6c310249febd3c7149b[m
+Author: adrian <adrian.auqui@utec.edu.pe>
+Date:   Wed Jun 5 16:18:33 2024 -0500
+
+    web-page
+
+[33mcommit b91ff10b0aa89cc42252f710ce10cf0a81f04d15[m
+Author: adrian <adrian.auqui@utec.edu.pe>
+Date:   Tue Jun 4 23:47:10 2024 -0500
+
+    api-rest
+
+[33mcommit 28e97098b30ba3d7687ddedafde198c1bd18ecf7[m
+Author: adrian <adrian.auqui@utec.edu.pe>
+Date:   Tue Jun 4 23:00:48 2024 -0500
+
+    api
+
+[33mcommit 657a14ddbd38450a3da617670f21993ab014b24c[m
+Author: adrian <adrian.auqui@utec.edu.pe>
+Date:   Tue Jun 4 20:30:59 2024 -0500
+
+    insert
+
+[33mcommit bdf21ad67e5a2333a45f69966bb0b384e39395c0[m
+Author: adrian <adrian.auqui@utec.edu.pe>
+Date:   Tue Jun 4 19:34:19 2024 -0500
+
+    rotation
+
+[33mcommit 9203d8ba1a948a64cbe0d2562730ff82e1f3598e[m
+Author: adrian <adrian.auqui@utec.edu.pe>
+Date:   Mon Jun 3 14:08:21 2024 -0500
+
+    base
+
+[33mcommit c5222860b6fc006ddffa158746a9d6c23e62f686[m
+Author: Adrian Antonio Auqui Perez <91244347+Auky216@users.noreply.github.com>
+Date:   Mon Jun 3 10:55:42 2024 -0500
+
+    Initial commit

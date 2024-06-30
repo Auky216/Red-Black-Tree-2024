@@ -16,6 +16,10 @@ public:
     HTTP_PROTOTYPE(WebHandler)
 
     void onRequest(const Http::Request& request, Http::ResponseWriter response) override {
+        // Permitir peticiones desde cualquier origen
+        response.headers().add<Http::Header::AccessControlAllowOrigin>("*");
+
+        // Resto del código de enrutamiento como antes
         if (request.method() == Http::Method::Get && request.resource() == "/insert") {
             handleInsert(request, response);
         } else if (request.method() == Http::Method::Get && request.resource() == "/delete") {
