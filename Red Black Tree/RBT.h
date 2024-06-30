@@ -54,8 +54,11 @@ public:
     if (nodeToDelete != nullptr) {
         Delete(root, nodeToDelete); // Call the Delete function you implemented earlier
     }
-}
+
+    
 private:
+
+
 
 void Transplant(Node<T>*& root, Node<T>* u, Node<T>* v) {
     if (u->parent == nullptr) {

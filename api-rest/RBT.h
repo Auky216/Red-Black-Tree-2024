@@ -62,6 +62,13 @@ public:
         root = nullptr;
     }
 
+    int memoryUsage() {
+        return memoryUsage(root);
+    }
+    int height() {
+        return height(root);
+    }
+
 private:
     void clear(Node<T>* node) {
         if (node == nullptr) {
@@ -338,5 +345,22 @@ private:
         } else {
             return search(node->right, value);
         }
+    }
+
+
+    int memoryUsage(Node<T>* node) {
+        if (node == nullptr) {
+            return 0;
+        }
+
+        return sizeof(*node) + memoryUsage(node->left) + memoryUsage(node->right);
+    }
+
+    int height(Node<T>* node) {
+        if (node == nullptr) {
+            return 0;
+        }
+
+        return 1 + max(height(node->left), height(node->right));
     }
 };

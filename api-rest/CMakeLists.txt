@@ -9,7 +9,8 @@ pkg_search_module(PISTACHE REQUIRED libpistache)
 include_directories(${PISTACHE_INCLUDE_DIRS})
 
 add_executable(Red_Black_Tree_2024  RBT.h
-        "main.cpp")
+        "main.cpp"
+        WebHandler.h)
 
 target_link_libraries(Red_Black_Tree_2024 ${PISTACHE_LIBRARIES})
  

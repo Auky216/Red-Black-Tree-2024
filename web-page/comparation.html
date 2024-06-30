@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de Árboles AVL y Red-Black</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos adicionales específicos para la página de comparación */
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #000;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #input-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #input-form input {
+            padding: 8px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        #input-form button {
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #ff4655;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #input-form button:hover {
+            background-color: #e53935;
+        }
+
+        #comparison-chart {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 900px;
+            margin: 20px auto;
+            flex-wrap: wrap;
+        }
+
+        .chart {
+            width: 45%;
+            margin: 10px 0;
+        }
+
+        #comparison-table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #comparison-table th, #comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #comparison-table th {
+            background-color: #000;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .chart {
+                width: 90%;
+            }
+
+            #input-form input {
+                margin-bottom: 10px;
+                width: calc(100% - 120px);
+            }
+
+            #input-form button {
+                width: 100px;
+            }
+
+            #comparison-table th, #comparison-table td {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        function fetchAndDisplayData() {
+            const value = document.getElementById('value-input').value;
+
+            // Construir la URL del API
+            const url = `http://localhost:9080/compare?value=${value}`;
+
+            // Realizar la solicitud GET al API
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Actualizar los elementos HTML con los datos obtenidos
+                    document.getElementById('avl-height').textContent = data.avlHeight;
+                    document.getElementById('avl-insert-time').textContent = data.avlInsertTime;
+                    document.getElementById('avl-memory').textContent = data.avlMemory;
+
+                    document.getElementById('rbt-height').textContent = data.rbtHeight;
+                    document.getElementById('rbt-insert-time').textContent = data.rbtInsertTime;
+                    document.getElementById('rbt-memory').textContent = data.rbtMemory;
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos:', error);
+                    // Manejar el error aquí si es necesario
+                });
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>Red-Black Trees</h1>
+            <nav>
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="implementation.html" class="nav-link">Implementación</a>
+                <a href="comparation.html" class="nav-link">Comparación</a>
+                <a href="members.html" class="nav-link">Integrantes</a>
+            </nav>
+        </div>
+    </header>
+
+    <h1>Comparación de Árboles AVL y Red-Black</h1>
+    <form id="input-form">
+        <input type="number" id="value-input" placeholder="Cantidad de valores" min="1">
+        <button type="button" onclick="fetchAndDisplayData()">Comparar</button>
+    </form>
+    <div id="comparison-chart">
+        <!-- Aquí van las gráficas si decides agregarlas -->
+    </div>
+    <table id="comparison-table">
+        <thead>
+            <tr>
+                <th>Métrica</th>
+                <th>AVL</th>
+                <th>Red-Black</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tiempo de Inserción (μs)</td>
+                <td id="avl-insert-time">-</td>
+                <td id="rbt-insert-time">-</td>
+            </tr>
+            <tr>
+                <td>Uso de Memoria (bytes)</td>
+                <td id="avl-memory">-</td>
+                <td id="rbt-memory">-</td>
+            </tr>
+            <tr>
+                <td>Altura</td>
+                <td id="avl-height">-</td>
+                <td id="rbt-height">-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+</body>
+</html>

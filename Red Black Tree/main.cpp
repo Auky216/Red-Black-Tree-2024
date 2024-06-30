@@ -17,7 +17,7 @@ int main(){
     cout<<endl;
 
 
-    tree.Delete(25  );
+    cout<<tree.height()<<ednl;
 
     cout<< tree.printInOrder();
 
