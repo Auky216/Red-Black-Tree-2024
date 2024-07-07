@@ -1,24 +1,30 @@
 #include "RBT.h"
-
+#include "vector"
 using namespace std;
 
 int main(){
     RBT<int> tree;
-    tree.insert(10);
-    tree.insert(20);
-    tree.insert(30);
-    tree.insert(15);
-    tree.insert(25);
-    tree.insert(24);
-    tree.insert(24);
     
-    cout<< tree.printInOrder();
+    vector<int> vec;
+    for(int i = 0;i<1000000;i++){
+        vec.push_back(i);
+        tree.insert(i);
 
-    cout<<endl;
+    }
+
+    cout<<"------------------------------------------"<<endl;
+
+    for(int i = 1;i<1000000;i++){
+        tree.remove(i);
+
+    }
+
+    cout<<"------------------------------------------"<<endl;
+
+    cout<<tree.printInOrder();
 
 
-    cout<<tree.height()<<ednl;
 
-    cout<< tree.printInOrder();
+
 
 }
